@@ -1,5 +1,15 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@next/next/recommended"
+  ],
   "rules": {
-    "@typescript-eslint/prefer-as-const": "off"
+    "no-console": "warn",
+    "no-unused-vars": "warn"
   }
 }

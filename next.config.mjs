@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['cdn.weatherapi.com'], // Allow images from this domain
+      domains: ['cdn.weatherapi.com'],
     },
   };
   
-  export default nextConfig; // Use export default instead of module.exports
+  export default nextConfig; 
   
   
