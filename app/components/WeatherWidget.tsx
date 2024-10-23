@@ -2,10 +2,23 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
+
+interface WeatherData {
+  current: {
+    condition: {
+      text: string;
+      icon: string;
+    };
+    temp_c: number;
+    humidity: number;
+    wind_kph: number;
+  };
+}
 
 const WeatherWidget: React.FC = () => {
   const [city, setCity] = useState('');
-  const [weatherData, setWeatherData] = useState<any>(null);
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const API_KEY = 'c538fd13cd9a434ab7b161522241210';
@@ -19,8 +32,9 @@ const WeatherWidget: React.FC = () => {
     try {
       const response = await axios.get(apiUrl);
       setWeatherData(response.data);
-      setError(null); 
+      setError(null);
     } catch (err) {
+      console.error(err);
       setError('City not found or error fetching weather data.');
       setWeatherData(null);
     }
@@ -34,7 +48,8 @@ const WeatherWidget: React.FC = () => {
       setError('Please enter a city name.');
     }
   };
-// inline styling
+
+  // Inline styling
   const styles = {
     container: {
       backgroundColor: '#f0f4f8',
@@ -74,7 +89,7 @@ const WeatherWidget: React.FC = () => {
       transition: 'background-color 0.3s ease',
     },
     buttonHover: {
-      backgroundColor: '#0056b3', 
+      backgroundColor: '#0056b3',
     },
     weatherInfo: {
       marginTop: '20px',
@@ -148,9 +163,13 @@ const WeatherWidget: React.FC = () => {
       {weatherData && (
         <div style={styles.box}>
           <div style={styles.blueIconContainer}>
-            <img
-              src={weatherData.current.condition.icon}
+            <Image
+              src={weatherData.current.condition.icon.startsWith('//')
+                ? `https:${weatherData.current.condition.icon}`
+                : weatherData.current.condition.icon}
               alt="Weather icon"
+              width={50}
+              height={50}
               style={styles.weatherIcon}
             />
           </div>
@@ -168,6 +187,8 @@ const WeatherWidget: React.FC = () => {
 };
 
 export default WeatherWidget;
+
+
 
 
 
