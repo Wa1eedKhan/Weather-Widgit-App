@@ -69,7 +69,7 @@ const WeatherWidget: React.FC = () => {
     },
     form: {
       display: 'flex',
-      flexDirection: 'column' as 'column',
+      flexDirection: 'column' as const,
       gap: '10px',
     },
     input: {
@@ -93,9 +93,9 @@ const WeatherWidget: React.FC = () => {
     },
     weatherInfo: {
       marginTop: '20px',
-      textAlign: 'center' as 'center',
+      textAlign: 'center' as const,
       display: 'flex',
-      flexDirection: 'column' as 'column',
+      flexDirection: 'column' as const,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -129,7 +129,7 @@ const WeatherWidget: React.FC = () => {
     weatherText: {
       marginBottom: '5px',
       fontSize: '16px',
-      textAlign: 'center' as 'center',
+      textAlign: 'center' as const,
     },
   };
 
@@ -187,6 +187,7 @@ const WeatherWidget: React.FC = () => {
 };
 
 export default WeatherWidget;
+
 
 
 
